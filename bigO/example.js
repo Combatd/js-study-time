@@ -26,3 +26,13 @@ faster?
 Less memory usage?
 Readability?
 */
+
+/*
+Different machines might record different time elapsed.
+
+The margins and measurements could be different....
+
+Even the same machine can record different times when rerunning the function!
+
+Fast algorithms probably need a more precise measurement than looking at time elapsed.
+*/
