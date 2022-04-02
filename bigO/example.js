@@ -11,3 +11,18 @@ function addUpTo(n) {
 }
 
 console.log(addUpTo(100));
+
+const sumUpTo = (n) => {
+    return n * (n + 1) / 2;
+}
+
+console.log(sumUpTo(6));
+console.log(sumUpTo(100));
+
+/*
+But what is better?
+
+faster?
+Less memory usage?
+Readability?
+*/
