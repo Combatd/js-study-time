@@ -14,6 +14,7 @@ function bubbleSort(arr) {
 }
 */ 
 
+/*
 function bubbleSort(arr) {
     for (let i = arr.length; i > 0; i--) {
         for (j = 0; j < i - 1; j++) {
@@ -24,6 +25,25 @@ function bubbleSort(arr) {
                 arr[j + 1] = temp;
             }
         }
+    } 
+    return arr;
+}
+*/
+
+const bubbleSort = (arr) => {
+    let noSwaps; // undefined
+    for (let i = arr.length; i > 0; i--) {
+        noSwaps = true;
+        for (j = 0; j < i - 1; j++) {
+            if (arr[j] > arr[j+1]) {
+                // swap
+                let temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j + 1] = temp;
+                noSwaps = false;
+            }
+        }
+        if (noSwaps) break; // reduce our iterations by breaking out since it is already sorted
     } 
     return arr;
 }
