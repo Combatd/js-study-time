@@ -47,3 +47,9 @@ const bubbleSort = (arr) => {
     } 
     return arr;
 }
+
+/* 
+bubbleSort is generally n^2 in the Time worst case O(n^2)
+
+in best case, bubbleSort could be O(n) if it is mostly sorted
+*/
