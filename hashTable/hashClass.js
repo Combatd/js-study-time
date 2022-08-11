@@ -24,7 +24,9 @@ class HashTable {
     this.keyMap[index].push(key, value);
   }
 
+  // accepts a key
   get = function(key, value) {
+    // hashes the key
     let index = this._hash(key);
     if (this.keyMap[index]){
       for (let i = 0; i < this.keyMap[index].length; i++){
@@ -33,8 +35,38 @@ class HashTable {
         }
       }
     }
+    // if not in hash table return undefined
     return undefined;
   }
+
+  keys = function() {
+    let keysArr = [];
+    for(let i = 0; i < this.keyMap.length; i++){
+      if(this.keyMap[i]){
+        for(let j = 0; j < this.keyMap[i].length; j++){
+          if(!keysArr.includes(this.keyMap[i][j][0])){
+            keysArr.push(this.keyMap[i][j][0])
+          }
+        }
+      }
+    }
+    return keysArr;
+  }
+
+  values = function() {
+    let valuesArr = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if(!valuesArr.includes(this.keyMap[i][j][1])) {
+            valuesArr.push(this.keyMap[i][j][1]);
+          }  
+        }
+      }
+    }
+    return valuesArr;
+  }
+
 }
 
 let ht = new HashTable(17);
@@ -45,3 +77,10 @@ ht.set("salmon","#FA8072")
 ht.set("lightcoral","#F08080")
 ht.set("mediumvioletred","#C71585")
 ht.set("plum","#DDA0DD")
+ht.set("purple","#DDA0DD")
+ht.set("violet","#DDA0DD")
+
+
+ht.keys().forEach(function(key){
+  console.log(ht.get(key));
+})
