@@ -29,13 +29,22 @@ function merge(arr1, arr2) {
 console.log(merge([100, 200], [1, 2, 3, 5, 6]));
 
 function mergeSort(arr1, arr2) {
+    if(arr.length <= 1) {
+        return arr;
+    } 
+
     // Break up the array into halves until you have arrays 
     // that are empty or have one element
     let midPoint = (arr1 + arr2) / 2;
 
     // Once we have smaller sorted arrays, merge those arrays with other sorted arrays
     // until you are back at the full length of the array
+    let left = mergeSort(arr.slice(0,midPoint));
+    let right = mergeSort(arr.slice(midPoint));
 
     // Once the array has been merged back together, 
     // return the merged and sorted array
+    return merge(left, right);
 }
+
+mergeSort([10,24,76,73])
