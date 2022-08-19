@@ -33,4 +33,23 @@ class Graph {
         }  
     }
 
+    /*
+        #removeEdge
+        Accepts 2 vertices as arguments, vertex1 and vertex2
+        Should reassign the key of vertex1 to an array that DOES NOT contain vertex2
+        Should reassign the key of vertex2 to an array that DOES NOT contain vertex1
+    */
+   removeEdge = function(vertex1, vertex2) {
+        let adjacencyListVertex1Exists = this.adjacencyList[vertex1];
+        let adjacencyListVertex2Exists = this.adjacencyList[vertex2];
+        if(adjacencyListVertex1Exists) {
+            this.adjacencyList[vertex1] = this.adjacencyList[vertex1]
+                                            .filter(vertex => vertex !== vertex2)
+        }
+        if(adjacencyListVertex2Exists) {
+            this.adjacencyList[vertex2] = this.adjacencyList[vertex2]
+                                            .filter(vertex => vertex !== vertex1)
+        }
+   }
+
 }
