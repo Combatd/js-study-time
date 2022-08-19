@@ -52,4 +52,18 @@ class Graph {
         }
    }
 
+   /*
+        #removeVertex
+        Accepts a vertex to remove
+        Loops as long as there are any other vertices in adjacencyList for that vertex
+        Inside of the loop, call removeEdge with vertex we are removing and any values in adjacencyList for that vertex
+        Delete the key in adjacencyList for that vertex
+   */
+   removeVertex = function(vertex) {
+    while (this.adjacencyList[vertex.length]) {
+        const adjacentVertex = this.adjacencyList[vertex].pop();
+        this.removeEdge(vertex, adjacentVertex);
+    }
+    delete this.adjacencyList[vertex];
+   }
 }
