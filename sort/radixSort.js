@@ -22,3 +22,16 @@ function getDigit(num, place) {
 
 console.log(getDigit(7323, 2)); // => 3
 console.log(getDigit(7323, 12)); // => 0
+
+/*
+#digitCount(num) - return the number of digits in num
+*/
+
+function digitCount(num) {
+    if (num === 0) {
+        return 1;
+    }
+    return Math.floor(Math.log10(Math.abs(num))) + 1;
+}
+
+console.log(digitCount(21368));
