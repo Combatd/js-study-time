@@ -35,3 +35,20 @@ function digitCount(num) {
 }
 
 console.log(digitCount(21368));
+
+/*
+#mostDigits(nums)
+Given an array of numbers, 
+returns the number of digits in the largest numbers in the list
+*/
+
+function mostDigits(nums) {
+    let maxDigits = 0;
+    for (let i = 0; i < nums.length; i++) {
+        let currentNumber = nums[i];
+        maxDigits = Math.max(maxDigits, digitCount(currentNumber));
+    }
+    return maxDigits;
+}
+
+console.log(mostDigits([23, 567, 89, 12234324, 90]));
