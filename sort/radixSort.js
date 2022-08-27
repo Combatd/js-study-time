@@ -63,6 +63,9 @@ For each iteration of the loop:
 Replace our existing array with values in our buckets, starting with 0 and going up to 9
 return list at the end
 */
+
+// Time: O(nk) n = length of array, k = number of digits(average)
+// Space O(n + k)
 function radixSort(nums) {
     let maxDigitCount = mostDigits(nums);
     for (let k = 0; k < maxDigitCount; k++) {
