@@ -87,15 +87,40 @@ class SinglyLinkedList {
        }
        return node;
    }
+
+   /*
+    #unshift
+    Function accepts a value
+    Create a new node using value argument
+    If there is no head property on the list, set the head and tail to be the newly created node
+    Otherwise, set the newly created node's next property to be the current head property on the list
+    Set the head property on the list to be that newly created node
+    Increment the length of the list by 1
+    Return the linked list
+   */
+  unshift = function(value) {
+    let newNode = new Node(value);
+    if(!this.head) {
+        this.head = newNode;
+        this.tail = newNode;
+    } else {
+        newNode.next = this.head;
+        this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
-let first = new Node('Hi');
+// let first = new Node('Hi');
 let list = new SinglyLinkedList();
 list.push('Hi');
 list.push(99);
 list.push('!');
-console.log(list.head);
-console.log(list.tail);
+// console.log(list.head);
+// console.log(list.tail);
+// list.traverse();
+// list.pop();
+// console.log(list.shift());
+list.unshift('First');
 list.traverse();
-list.pop();
-console.log(list.shift());
