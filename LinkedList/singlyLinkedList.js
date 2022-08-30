@@ -32,6 +32,22 @@ class SinglyLinkedList {
         this.length++;
         return this;
     }
+    traverse() {
+        let currentNode = this.head;
+        while(currentNode) {
+            console.log(currentNode.value);
+            currentNode = currentNode.next;
+        }
+    }
+    /*
+    #pop
+    If there are no nodes in the list, returns undefined
+    Loop through the list until the tail is reached
+    Set the next property of the 2nd to last node to be null
+    Set the tail to be the 2nd to last node
+    Decrement the length of the list by 1
+    Return the value of the node removed
+    */
 }
 
 let first = new Node('Hi');
@@ -40,3 +56,4 @@ list.push('Hi');
 list.push(99);
 console.log(list.head);
 console.log(list.tail);
+list.traverse();
