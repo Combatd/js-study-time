@@ -67,6 +67,26 @@ class SinglyLinkedList {
        }
        return current;
    }
+   /*
+    #shift
+    If there are no nodes, return undefined
+    Store the current head property in a variable
+    Set the head property to be the current head's next property
+    Decrement the length by 1
+    return the value of the head removed
+   */
+   shift() {
+       if (!this.head) {
+           return undefined;
+       }
+       let node = this.head;
+       this.head = node.next;
+       this.length--;
+       if (this.length === 0) {
+           this.tail = null;
+       }
+       return node;
+   }
 }
 
 let first = new Node('Hi');
@@ -78,3 +98,4 @@ console.log(list.head);
 console.log(list.tail);
 list.traverse();
 list.pop();
+console.log(list.shift());
