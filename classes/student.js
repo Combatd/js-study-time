@@ -30,6 +30,10 @@ class Student {
         let sum = this.scores.reduce((a, b) => a + b);
         return sum/this.scores.length;
     }
+
+    static EnrollStudents() {
+        return 'Enrolling Students!';
+    }
 }
 
 let firstStudent = new Student('Emil', 'Kata', 3);
@@ -44,3 +48,4 @@ firstStudent.addScore(98);
 firstStudent.addScore(100);
 firstStudent.addScore(76);
 console.log(firstStudent.calculateAverage());
+console.log(Student.EnrollStudents());
