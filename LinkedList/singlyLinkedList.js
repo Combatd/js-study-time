@@ -48,12 +48,33 @@ class SinglyLinkedList {
     Decrement the length of the list by 1
     Return the value of the node removed
     */
+   pop = function() {
+       if (!this.head) {
+           return undefined;
+       }
+       let current = this.head;
+       let newTail = current; // starts at the head
+       while(current.next) {
+            newTail = current;
+            current = current.next;
+       }
+       this.tail = newTail;
+       this.tail.next = null;
+       this.length--;
+       if (this.length === 0) {
+            this.head = null;
+            this.tail = null;
+       }
+       return current;
+   }
 }
 
 let first = new Node('Hi');
 let list = new SinglyLinkedList();
 list.push('Hi');
 list.push(99);
+list.push('!');
 console.log(list.head);
 console.log(list.tail);
 list.traverse();
+list.pop();
