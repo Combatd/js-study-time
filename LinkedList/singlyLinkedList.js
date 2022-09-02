@@ -130,6 +130,23 @@ class SinglyLinkedList {
       }
       return current;
   }
+
+  /*
+    #set
+    This function should accept an index and a value
+    Use get function to find the specific node
+    If the node is not found, return false
+    If the node is found, set the value of that node to be the vlaue passed to the function and return true
+  */
+  set(index, value) {
+    let foundNode = this.get(index);
+    if (foundNode) {
+        foundNode.value = value;
+        return true;
+    } else {
+        return false;
+    }
+  }
 }
 
 let first = new Node('Hi');
@@ -142,4 +159,6 @@ console.log(list.tail);
 list.traverse();
 // list.pop();
 console.log(list.shift());
+console.log(list.get(1));
+console.log(list.set(1, '?'));
 console.log(list.get(1));
