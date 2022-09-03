@@ -176,6 +176,34 @@ class SinglyLinkedList {
       this.length++;
       return true;
   }
+
+  /*
+    #remove
+    Removes a node from a specific index.
+    If the index is less than zero or greater than the length, return undefined
+    If the index is the same as the length - 1, pop the tail node
+    If the index is 0, shift the head node
+    Otherwise, using the get method, access the node at the index - 1
+    Set the next property on that node to be the next of the next node
+    Decrement the length
+    Return the value of the node removed
+  */
+  remove(index) {
+      if (index < 0 || index >= this.length) {
+          return undefined;
+      } 
+      if (index === 0) {
+          return this.shift();
+      } else if (index === this.length - 1) {
+          return this.pop();
+      }
+
+      let previousNode = this.get(index - 1);
+      let removed = previousNode.next;
+      previousNode.next = removed.next;
+
+      return removed;
+  }
 }
 
 let first = new Node('Hi');
@@ -183,6 +211,8 @@ let list = new SinglyLinkedList();
 list.push('Hi');
 list.push(99);
 list.push('!');
+list.push('deployment');
+list.push('office worker');
 console.log(list.head);
 console.log(list.tail);
 list.traverse();
@@ -195,3 +225,4 @@ console.log(list.insert(2, 'burger'));
 console.log(list.traverse(), " <- traversal after inserting sandwich");
 console.log(list.insert(2, 'sandwich'));
 console.log(list.traverse(), " <- traversal after inserting sandwich");
+console.log(list.remove(1), ' <-- removed node');
