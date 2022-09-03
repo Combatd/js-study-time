@@ -204,6 +204,34 @@ class SinglyLinkedList {
 
       return removed;
   }
+
+  /*
+    #reverse
+    Swap the head and tail
+    Create a variable called next
+    Create a variable called prev
+    Create a variable called node and initialize it at the start of the head property
+    Loop through the list
+    Set next to be the next property on whatever node is
+    Set the next property on the node to be whatever prev is
+    Set the node variable to be the value of the next variable
+  */
+  reverse = function() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node
+    let next;
+    let prev = null;
+    let index = 0
+    // we could technically have run this while loop by index up until this.length
+    while (node) {
+        next = node.next;
+        node.next = prev;
+        prev = node;
+        node = next;
+    }
+    return this;
+  }
 }
 
 let first = new Node('Hi');
@@ -225,4 +253,6 @@ console.log(list.insert(2, 'burger'));
 console.log(list.traverse(), " <- traversal after inserting sandwich");
 console.log(list.insert(2, 'sandwich'));
 console.log(list.traverse(), " <- traversal after inserting sandwich");
-console.log(list.remove(1), ' <-- removed node');
+// console.log(list.remove(1), ' <-- removed node');
+list.reverse();
+console.log(list.traverse(), ' <- traversal after reverse');
