@@ -147,6 +147,35 @@ class SinglyLinkedList {
         return false;
     }
   }
+
+  /*
+    #insert
+    If the index is less than 0 or greater than the length, return false
+    If the index is the same as the length, push a new node to the end of the list
+    If the index is 0, unshift a new node to the start of the list
+    Otherwise, using the get method, access the node at the index - 1
+    Set the next property on that node to be the new node
+    Set the next property on the new node to be the previous next
+    Increment the length
+    Return true
+  */
+  insert = function(index, value) {
+    if (index < 0 || index > this.length) {
+        return false;
+    } else if (index === this.length) {
+        this.push(value);
+    } else if (index === 0) {
+        this.unshift(value);
+    } else {
+        let prevNode = this.get(index - 1);
+        let newNode = new Node(value);
+        let temp = prevNode.next;
+        prevNode.next = newNode;
+        newNode.next = temp; // the old prev.next node
+    }
+      this.length++;
+      return true;
+  }
 }
 
 let first = new Node('Hi');
@@ -162,3 +191,7 @@ console.log(list.shift());
 console.log(list.get(1));
 console.log(list.set(1, '?'));
 console.log(list.get(1));
+console.log(list.insert(2, 'burger'));
+console.log(list.traverse(), " <- traversal after inserting sandwich");
+console.log(list.insert(2, 'sandwich'));
+console.log(list.traverse(), " <- traversal after inserting sandwich");
