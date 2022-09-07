@@ -67,6 +67,7 @@ class SinglyLinkedList {
        }
        return current;
    }
+
    /*
     #shift
     If there are no nodes, return undefined
@@ -88,39 +89,170 @@ class SinglyLinkedList {
        return node;
    }
 
-   /*
-    #unshift
-    Function accepts a value
-    Create a new node using value argument
-    If there is no head property on the list, set the head and tail to be the newly created node
-    Otherwise, set the newly created node's next property to be the current head property on the list
-    Set the head property on the list to be that newly created node
-    Increment the length of the list by 1
-    Return the linked list
-   */
-  unshift = function(value) {
-    let newNode = new Node(value);
-    if(!this.head) {
-        this.head = newNode;
-        this.tail = newNode;
-    } else {
-        newNode.next = this.head;
-        this.head = newNode;
+    /*
+     #unshift
+     Function accepts a value
+     Create a new node using value argument
+     If there is no head property on the list, set the head and tail to be the newly created node
+     Otherwise, set the newly created node's next property to be the current head property on the list
+     Set the head property on the list to be that newly created node
+     Increment the length of the list by 1
+     Return the linked list
+    */
+    unshift = function (value) {
+        let newNode = new Node(value);
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
     }
-    this.length++;
+
+   /*
+    #get
+    This function should accept an index
+    If the index is less than zero or greater than or equal to the length of the list, return null
+    Loop through the list until you reach the index and return the node at that specific index
+   */
+  get = function(index) {
+      if (index < 0 || index >= this.length) {
+          return null;
+      }
+      let counter = 0;
+      let current = this.head;
+      while (counter != index) {
+          current = current.next;
+          counter++;
+      }
+      return current;
+  }
+
+  /*
+    #set
+    This function should accept an index and a value
+    Use get function to find the specific node
+    If the node is not found, return false
+    If the node is found, set the value of that node to be the vlaue passed to the function and return true
+  */
+  set(index, value) {
+    let foundNode = this.get(index);
+    if (foundNode) {
+        foundNode.value = value;
+        return true;
+    } else {
+        return false;
+    }
+  }
+
+  /*
+    #insert
+    If the index is less than 0 or greater than the length, return false
+    If the index is the same as the length, push a new node to the end of the list
+    If the index is 0, unshift a new node to the start of the list
+    Otherwise, using the get method, access the node at the index - 1
+    Set the next property on that node to be the new node
+    Set the next property on the new node to be the previous next
+    Increment the length
+    Return true
+  */
+  insert = function(index, value) {
+    if (index < 0 || index > this.length) {
+        return false;
+    } else if (index === this.length) {
+        this.push(value);
+    } else if (index === 0) {
+        this.unshift(value);
+    } else {
+        let prevNode = this.get(index - 1);
+        let newNode = new Node(value);
+        let temp = prevNode.next;
+        prevNode.next = newNode;
+        newNode.next = temp; // the old prev.next node
+    }
+      this.length++;
+      return true;
+  }
+
+  /*
+    #remove
+    Removes a node from a specific index.
+    If the index is less than zero or greater than the length, return undefined
+    If the index is the same as the length - 1, pop the tail node
+    If the index is 0, shift the head node
+    Otherwise, using the get method, access the node at the index - 1
+    Set the next property on that node to be the next of the next node
+    Decrement the length
+    Return the value of the node removed
+  */
+  remove(index) {
+      if (index < 0 || index >= this.length) {
+          return undefined;
+      } 
+      if (index === 0) {
+          return this.shift();
+      } else if (index === this.length - 1) {
+          return this.pop();
+      }
+
+      let previousNode = this.get(index - 1);
+      let removed = previousNode.next;
+      previousNode.next = removed.next;
+
+      return removed;
+  }
+
+  /*
+    #reverse
+    Swap the head and tail
+    Create a variable called next
+    Create a variable called prev
+    Create a variable called node and initialize it at the start of the head property
+    Loop through the list
+    Set next to be the next property on whatever node is
+    Set the next property on the node to be whatever prev is
+    Set the node variable to be the value of the next variable
+  */
+  reverse = function() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node
+    let next;
+    let prev = null;
+    let index = 0
+    // we could technically have run this while loop by index up until this.length
+    while (node) {
+        next = node.next;
+        node.next = prev;
+        prev = node;
+        node = next;
+    }
     return this;
   }
 }
 
-// let first = new Node('Hi');
+let first = new Node('Hi');
 let list = new SinglyLinkedList();
 list.push('Hi');
 list.push(99);
 list.push('!');
-// console.log(list.head);
-// console.log(list.tail);
-// list.traverse();
-// list.pop();
-// console.log(list.shift());
-list.unshift('First');
+list.push('deployment');
+list.push('office worker');
+console.log(list.head);
+console.log(list.tail);
 list.traverse();
+// list.pop();
+console.log(list.shift());
+console.log(list.get(1));
+console.log(list.set(1, '?'));
+console.log(list.get(1));
+console.log(list.insert(2, 'burger'));
+console.log(list.traverse(), " <- traversal after inserting sandwich");
+console.log(list.insert(2, 'sandwich'));
+console.log(list.traverse(), " <- traversal after inserting sandwich");
+// console.log(list.remove(1), ' <-- removed node');
+list.reverse();
+console.log(list.traverse(), ' <- traversal after reverse');
