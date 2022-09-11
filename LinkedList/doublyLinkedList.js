@@ -36,6 +36,33 @@ class DoublyLinkedList {
     this.length++;
     return this;
    }
+   
+   /*
+    #pop
+    If there is no head, return undefined
+    Store the current tail in a variable to return later
+    If the legnth is 1, set the head and tail to be null
+    Update the tail to be the previous Node
+    Set the newTail's next to be null
+    Decrement the length
+    Return the value removed
+   */
+   pop() {
+    if (!this.head) {
+      return undefined;
+    }
+    let removedNode = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = removedNode.prev;
+      this.tail.next = null;
+      removedNode.prev = null; // the old tail
+    }
+    this.length--;
+    return removedNode;
+   }
 }
 
 /*
@@ -51,3 +78,5 @@ list.push(99);
 list.push(100);
 list.push("Last Item");
 console.log(list);
+
+console.log(list.pop(), " <- #pop");
