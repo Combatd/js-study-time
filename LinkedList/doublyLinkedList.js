@@ -63,6 +63,37 @@ class DoublyLinkedList {
     this.length--;
     return removedNode;
    }
+
+   /*
+    #shift
+    Removes a node from the beginning of a Linked List
+    If length is 0, return undefined
+    Store the current head property in a variable oldHead
+    If the length is 1
+      set the head to be null
+      set the tail to be null
+    Update the head to be the next of the oldHead
+    Set the head's prev property to null
+    Set the oldHead next to null
+    Decrement the length
+    Return old head
+   */
+  shift = function() {
+    if (this.length === 0) {
+      return undefined;
+    }
+    let oldHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
+    }
+    this.length--;
+    return oldHead;
+  }
 }
 
 /*
@@ -79,4 +110,8 @@ list.push(100);
 list.push("Last Item");
 console.log(list);
 
-console.log(list.pop(), " <- #pop");
+// console.log(list.pop(), " <- #pop");
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
