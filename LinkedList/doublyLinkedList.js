@@ -122,6 +122,42 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  /*
+    #get
+    Accesses a node in a DoublyLinkedList by its position
+    Takes an index and returns a node at that position
+
+    If the index is less than 0 or greater or equal to the length, return null
+    If the index is less than or equal to half the length in the list
+      Loop through the list starting from the head and loop towards the middle
+      Return the node once it is found
+    If the index is greater than half the length of the list
+      Loop through the list starting from the tail and loop towards the middle
+      Return the node once it is found
+  */
+  get = function(index) {
+    if(index < 0 || index >= this.length) {
+      return undefined;
+    }
+    let midPoint = Math.floor(this.length / 2);
+    if (index <= midPoint) {
+      let count = 0;
+      let currentNode = this.head;
+      while(count !== index) {
+        currentNode = currentNode.next;
+        count++;
+      }
+      return currentNode;
+    } else if (index > midPoint) {
+      let count = this.length - 1;
+      let currentNode = this.tail;
+      while (count !== index) {
+        currentNode = currentNode.prev;
+        count--;
+      }
+      return currentNode;
+    }
+  }
 }
 
 /*
@@ -148,3 +184,7 @@ console.log(list);
 // console.log(list.shift());
 // console.log(list.shift());
 console.log(list.unshift('Hagrid'));
+console.log(list.get(0), ' <-- get');
+console.log(list.get(1), ' <-- get');
+console.log(list.get(2), ' <-- get 2');
+console.log(list.get(3), ' <-- get');
