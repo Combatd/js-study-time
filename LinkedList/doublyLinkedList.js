@@ -94,6 +94,34 @@ class DoublyLinkedList {
     this.length--;
     return oldHead;
   }
+  /*
+    #unshift
+    Adds a node to the beginning of a Linked List
+
+    Create a new node with the value that's passed in
+    If the length is 0
+      Set the head to be the new node
+      Set the tail to be the new node
+    Otherwise
+      Set the prev property on the head of the list to be the newNode
+      Set the next property on the newNode to be the head property
+      Update the head to be the newNode
+    Increment the length
+    Return the list
+  */
+  unshift(val) {
+    let newNode = new Node(val);
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head; // The current head will become the 2nd node
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 /*
@@ -105,13 +133,18 @@ first.next.next.prev = first.next;
 */
 
 let list = new DoublyLinkedList();
-list.push(99);
-list.push(100);
-list.push("Last Item");
+// list.push(99);
+// list.push(100);
+// list.push("Last Item");
+
+list.push('Harry');
+list.push('Ron');
+list.push("Hermione");
 console.log(list);
 
 // console.log(list.pop(), " <- #pop");
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
+// console.log(list.shift());
+// console.log(list.shift());
+// console.log(list.shift());
+// console.log(list.shift());
+console.log(list.unshift('Hagrid'));
