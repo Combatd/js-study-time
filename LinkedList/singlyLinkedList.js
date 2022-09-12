@@ -255,4 +255,8 @@ console.log(list.insert(2, 'sandwich'));
 console.log(list.traverse(), " <- traversal after inserting sandwich");
 // console.log(list.remove(1), ' <-- removed node');
 list.reverse();
+<<<<<<< HEAD
 console.log(list.traverse(), ' <- traversal after reverse');
+=======
+console.log(list.traverse(), ' <- traversal after reverse');
+>>>>>>> bc79a1c763c5bbf1e17d2badd3cdb5c8a7179dff
