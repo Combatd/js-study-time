@@ -158,6 +158,23 @@ class DoublyLinkedList {
       return currentNode;
     }
   }
+
+  /*
+    #set
+    Create a variable which is the result of the get method at the index passed to the function
+      If the get method returns a valid node, set the value of that node to be the value passed to the function
+      Return true
+    Otherwise, return false
+  */
+  set(index, val) {
+    let foundNode = this.get(index);
+    if (foundNode != null) {
+      foundNode.val = val;
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 /*
@@ -183,8 +200,46 @@ console.log(list);
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
-console.log(list.unshift('Hagrid'));
+//console.log(list.unshift('Hagrid'));
 console.log(list.get(0), ' <-- get');
 console.log(list.get(1), ' <-- get');
 console.log(list.get(2), ' <-- get 2');
-console.log(list.get(3), ' <-- get');
+
+console.log(list.set(2, 'HERMIONE'));
+console.log(list.get(2), ' <-- get 2');
+
+
+
+
+
+
+/*
+set(index, val) {
+  if (index < 0 || index >= this.length) {
+    return false;
+  }
+  let midPoint = Math.floor(this.length / 2);
+  if (index <= midPoint) {
+    let count = 0;
+    let currentNode = this.head;
+    while(count !== midPoint) {
+      if (count === index) {
+        currentNode.val = val;
+      }
+      currentNode = currentNode.next;
+      count++;
+    }
+  } else if (index > midPoint) {
+    let count = this.length - 1;
+    let currentNode = this.head;
+    while (count !== midPoint) {
+      if (count === index) {
+        currentNode.val = val;
+      }
+      currentNode = currentNode.prev;
+      count--;
+    }
+  }
+  return false;
+}
+*/
