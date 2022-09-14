@@ -201,9 +201,38 @@ class DoublyLinkedList {
     newNode.prev = beforeNode;
     newNode.next = afterNode;
     afterNode.prev = newNode;
-    
+
     this.length++;
     return true;
+  }
+
+  /*
+    #remove
+    Removes a node in a DoublyLinkedList by a certain position
+
+    If the index is less than zero or greater than or equal to the length return false
+    If the index is 0, shift
+    If the index is the same as the length, pop
+    Use the get method to access the node to be removed
+    Update the next and prev properties to remove the found node from the list
+    Set next and prev to null on the found node
+    Decrement the length
+    Return the removed node
+  */
+  remove(index) {
+    if (index < 0 || index >= this.lnegth) {
+      return false;
+    }
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    let removedNode = this.get(index);
+    removedNode.prev.next = removedNode.next;
+    removedNode.next.prev = removedNode.prev;
+    removedNode.next = null;
+    removedNode.prev = null;
+    this.length--;
+    return removedNode;
   }
 }
 
@@ -238,6 +267,9 @@ console.log(list.get(2), ' <-- get 2');
 console.log(list.set(2, 'HERMIONE'));
 console.log(list.get(2), ' <-- get 2');
 console.log(list.insert(1, 'Tonks'), ' <-- insert')
+console.log(list.get(1));
+
+console.log(list.remove(1), '<-- remove Tonks');
 console.log(list.get(1));
 
 
